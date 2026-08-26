@@ -61,7 +61,7 @@ export function Header() {
             </div>
 
             {/* Center: Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden lg:flex space-x-8">
               {navLinks.map((link) => (
                 <Link 
                   key={link.href}
@@ -77,7 +77,7 @@ export function Header() {
             </nav>
 
             {/* Right: Actions */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden lg:flex items-center space-x-6">
               <Link href="/explore" className="text-foreground hover:text-brand-green transition-colors">
                 <Search className="w-5 h-5" />
               </Link>
@@ -93,7 +93,7 @@ export function Header() {
             </div>
 
             {/* Mobile Actions */}
-            <div className="flex md:hidden items-center space-x-4">
+            <div className="flex lg:hidden items-center space-x-4">
               <Link href="/explore" className="text-foreground">
                 <Search className="w-5 h-5" />
               </Link>
@@ -113,7 +113,7 @@ export function Header() {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-background pt-24 px-4 sm:px-6 flex flex-col md:hidden overflow-y-auto">
+        <div className="fixed inset-0 z-40 bg-background pt-24 px-4 sm:px-6 flex flex-col lg:hidden overflow-y-auto">
           <nav className="flex flex-col space-y-6 mb-8">
             {navLinks.map((link) => (
               <Link 

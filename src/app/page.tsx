@@ -28,9 +28,9 @@ function InteractivePriceDrop() {
   }, [schedule.length]);
 
   return (
-    <div className="bg-card rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-border/50 border border-border max-w-5xl mx-auto">
-      <div className="flex flex-col md:flex-row gap-12 items-center">
-        <div className="flex-1 w-full relative">
+    <div className="bg-card rounded-3xl p-6 md:p-12 shadow-2xl shadow-border/50 border border-border w-full max-w-5xl mx-auto overflow-hidden">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+        <div className="w-full md:flex-1 relative">
           <div className="aspect-square relative rounded-3xl overflow-hidden shadow-lg border border-border group">
             <Image 
               src="/assets/pizza.jpg" 
@@ -112,8 +112,8 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-12 md:py-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             
             {/* Left Content */}
-            <div className="flex-1 text-center lg:text-left z-20">
-              <h1 className="text-6xl lg:text-[5.5rem] font-black tracking-tight text-foreground mb-6 leading-[1.05]">
+            <div className="flex-1 text-center lg:text-left z-20 w-full">
+              <h1 className="text-4xl sm:text-5xl lg:text-[5.5rem] font-black tracking-tight text-foreground mb-6 leading-[1.1] md:leading-[1.05]">
                 Great Food.<br/>
                 <span className="text-brand-green">Better Prices.</span><br/>
                 Less Waste.
@@ -151,7 +151,7 @@ export default function HomePage() {
               </div>
 
               {/* Floating UI Elements */}
-              <div className="absolute top-12 -left-8 md:-left-12 bg-card/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-border animate-float-slow flex items-center space-x-3">
+              <div className="absolute top-4 left-4 md:top-12 md:-left-12 bg-card/95 backdrop-blur-md p-3 md:p-4 rounded-2xl shadow-xl border border-border animate-float-slow flex items-center space-x-2 md:space-x-3">
                 <div className="w-10 h-10 bg-brand-green/20 text-brand-green rounded-full flex items-center justify-center">
                   <Sparkles className="w-5 h-5" />
                 </div>
@@ -161,14 +161,14 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="absolute bottom-32 -right-6 md:-right-12 bg-card/95 backdrop-blur-md p-5 rounded-2xl shadow-xl border border-border animate-float-medium">
+              <div className="absolute bottom-8 right-2 md:bottom-32 md:-right-12 bg-card/95 backdrop-blur-md p-3 md:p-5 rounded-2xl shadow-xl border border-border animate-float-medium">
                 <p className="font-black text-3xl text-brand-green mb-1">30% OFF</p>
                 <p className="text-sm font-bold text-muted flex items-center">
                   <Clock className="w-4 h-4 mr-1" /> Pickup by 10 PM
                 </p>
               </div>
 
-              <div className="absolute -bottom-6 left-12 bg-foreground text-background p-4 rounded-2xl shadow-2xl animate-float-fast flex items-center space-x-3">
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-max md:translate-x-0 md:-bottom-6 md:left-12 bg-foreground text-background p-3 md:p-4 rounded-2xl shadow-2xl animate-float-fast flex items-center space-x-2 md:space-x-3">
                 <AlertCircle className="w-5 h-5 text-brand-orange" />
                 <p className="font-bold text-sm">Only 4 portions left</p>
               </div>
@@ -177,16 +177,16 @@ export default function HomePage() {
           </div>
           
           {/* Background Soft Glows */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-green/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-orange/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+          <div className="absolute top-0 right-0 w-[150vw] h-[150vw] max-w-[800px] max-h-[800px] bg-brand-green/5 rounded-full blur-[80px] md:blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+          <div className="absolute bottom-0 left-0 w-[120vw] h-[120vw] max-w-[600px] max-h-[600px] bg-brand-orange/5 rounded-full blur-[60px] md:blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
         </section>
 
         {/* SECTION 2: THE MAIN IDEA */}
-        <section className="py-32 bg-card relative">
+        <section className="py-16 md:py-32 bg-card relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
               <div>
-                <h2 className="text-5xl md:text-6xl font-black mb-8 leading-[1.1]">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 md:mb-8 leading-[1.1]">
                   The Later It Gets,<br/>
                   <span className="text-brand-green text-transparent bg-clip-text bg-gradient-to-r from-brand-green to-lime-500">The Better The Deal.</span>
                 </h2>
@@ -238,11 +238,11 @@ export default function HomePage() {
         </section>
 
         {/* SECTION 3: FOOD DISCOVERY */}
-        <section className="py-32 bg-background border-y border-border">
+        <section className="py-16 md:py-32 bg-background border-y border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-              <div>
-                <h2 className="text-5xl font-black mb-4">What's Waiting For You Today?</h2>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+              <div className="w-full">
+                <h2 className="text-3xl md:text-5xl font-black mb-4">What's Waiting For You Today?</h2>
                 <p className="text-xl text-muted font-medium">Discover fresh, high-quality meals rescued from waste.</p>
               </div>
               <Link href="/explore">
@@ -268,10 +268,10 @@ export default function HomePage() {
         </section>
 
         {/* SECTION 4: INTERACTIVE PRICE DROP */}
-        <section className="py-32 bg-foreground text-background">
+        <section className="py-16 md:py-32 bg-foreground text-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-5xl font-black mb-6">Watch The Price Drop.</h2>
+            <div className="text-center mb-10 md:mb-16">
+              <h2 className="text-3xl md:text-5xl font-black mb-6">Watch The Price Drop.</h2>
               <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium">
                 As the evening progresses, participating restaurants increase their discounts to ensure their fresh food finds a home.
               </p>
@@ -283,9 +283,9 @@ export default function HomePage() {
         </section>
 
         {/* SECTION 5: FOR RESTAURANTS */}
-        <section className="py-32 bg-card">
+        <section className="py-16 md:py-32 bg-card overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
               
               <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl order-2 lg:order-1 border border-gray-100">
                 <Image 
@@ -301,7 +301,7 @@ export default function HomePage() {
                 <div className="inline-flex items-center px-4 py-2 rounded-full bg-brand-orange/10 text-brand-orange font-bold text-sm mb-6">
                   <Store className="w-4 h-4 mr-2" /> For Restaurants
                 </div>
-                <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight">Turn Unsold Food Into Revenue.</h2>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">Turn Unsold Food Into Revenue.</h2>
                 <p className="text-xl text-muted mb-10 leading-relaxed font-medium">
                   List food that may otherwise remain unsold, set your own discount schedule and reach nearby customers instantly.
                 </p>
@@ -334,10 +334,10 @@ export default function HomePage() {
         </section>
 
         {/* SECTION 6: FOOD WASTE / IMPACT */}
-        <section className="py-32 bg-background overflow-hidden border-t border-border">
+        <section className="py-16 md:py-32 bg-background overflow-hidden border-t border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-5xl font-black mb-8">Good Food Deserves Another Chance.</h2>
-            <p className="text-2xl text-muted max-w-3xl mx-auto mb-16 leading-relaxed font-medium">
+            <h2 className="text-3xl md:text-5xl font-black mb-6 md:mb-8">Good Food Deserves Another Chance.</h2>
+            <p className="text-xl md:text-2xl text-muted max-w-3xl mx-auto mb-12 md:mb-16 leading-relaxed font-medium">
               50% Food connects restaurants with customers so that good food has a better chance of being enjoyed instead of going unsold.
             </p>
 
@@ -381,13 +381,13 @@ export default function HomePage() {
         </section>
 
         {/* SECTION 7: MUMBAI */}
-        <section className="py-32 bg-card relative overflow-hidden">
+        <section className="py-16 md:py-32 bg-card relative overflow-hidden">
           {/* Map-inspired background */}
           <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h2 className="text-5xl font-black mb-6">Good Deals, Around Mumbai.</h2>
-            <p className="text-xl text-muted font-medium max-w-2xl mx-auto mb-12">Discover what's available in your neighborhood.</p>
+            <h2 className="text-4xl md:text-5xl font-black mb-6">Good Deals, Around Mumbai.</h2>
+            <p className="text-lg md:text-xl text-muted font-medium max-w-2xl mx-auto mb-10 md:mb-12">Discover what's available in your neighborhood.</p>
             
             <div className="flex flex-wrap justify-center gap-4 mb-16">
               {['Bandra', 'Andheri', 'Powai', 'Lower Parel', 'BKC', 'Juhu'].map((area) => (
@@ -408,13 +408,13 @@ export default function HomePage() {
         </section>
 
         {/* SECTION 8: CUSTOMER BENEFITS */}
-        <section className="py-32 bg-background border-t border-border relative overflow-hidden">
+        <section className="py-16 md:py-32 bg-background border-t border-border relative overflow-hidden">
           {/* Subtle background decoration */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight">The Smart Way To Eat.</h2>
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 tracking-tight">The Smart Way To Eat.</h2>
               <p className="text-lg text-muted font-medium">Enjoy premium meals while making a positive impact.</p>
             </div>
             
@@ -469,23 +469,23 @@ export default function HomePage() {
         </section>
 
         {/* SECTION 9: FINAL CTA (Image Inspired Layout) */}
-        <section className="bg-background pt-20 overflow-hidden border-t border-border">
+        <section className="bg-background pt-12 md:pt-20 overflow-hidden border-t border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
             
             {/* Left Side: Images & Arch */}
-            <div className="flex-1 w-full relative h-[450px] md:h-[550px] flex items-end justify-center">
+            <div className="flex-1 w-full relative h-[350px] md:h-[550px] flex items-end justify-center mb-12 md:mb-0">
               {/* Dark Green Arch */}
-              <div className="absolute bottom-0 w-[80%] h-[80%] bg-[#1a4a40] rounded-t-full z-0"></div>
+              <div className="absolute bottom-0 w-[90%] md:w-[80%] h-[80%] bg-[#1a4a40] rounded-t-full z-0"></div>
               
               {/* Floating Image 1 (Tilted Left) - Video */}
-              <div className="absolute bottom-16 left-4 md:left-12 w-48 h-72 md:w-64 md:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white rotate-[-15deg] z-10 hover:rotate-[-5deg] transition-transform duration-500">
+              <div className="absolute bottom-8 left-2 md:bottom-16 md:left-12 w-36 h-56 md:w-64 md:h-96 rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white -rotate-6 md:rotate-[-15deg] z-10 hover:rotate-[-5deg] transition-transform duration-500">
                 <video autoPlay loop muted playsInline className="object-cover w-full h-full">
                   <source src="/assets/banner-video2.mp4" type="video/mp4" />
                 </video>
               </div>
               
               {/* Floating Image 2 (Tilted Right) - Video */}
-              <div className="absolute bottom-24 right-4 md:right-12 w-48 h-72 md:w-64 md:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white rotate-[15deg] z-20 hover:rotate-[5deg] transition-transform duration-500">
+              <div className="absolute bottom-16 right-2 md:bottom-24 md:right-12 w-36 h-56 md:w-64 md:h-96 rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white rotate-6 md:rotate-[15deg] z-20 hover:rotate-[5deg] transition-transform duration-500">
                 <video autoPlay loop muted playsInline className="object-cover w-full h-full">
                   <source src="/assets/vidoe2.mp4" type="video/mp4" />
                 </video>
@@ -493,8 +493,8 @@ export default function HomePage() {
             </div>
 
             {/* Right Side: Text & CTA */}
-            <div className="flex-1 w-full py-16 md:pl-16 text-center md:text-left z-30">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
+            <div className="flex-1 w-full pb-16 md:py-16 md:pl-16 text-center md:text-left z-30">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
                 Ready to Eat Well,<br/> Waste Less?
               </h2>
               
