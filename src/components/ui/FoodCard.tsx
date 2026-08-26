@@ -10,7 +10,7 @@ import { CountdownTimer } from './CountdownTimer';
 export interface FoodCardProps {
   id: string;
   restaurantName: string;
-  foodName: string;
+  name: string;
   cuisine: string;
   location: string;
   originalPrice: number;
@@ -27,7 +27,7 @@ export interface FoodCardProps {
 
 export function FoodCard({
   restaurantName,
-  foodName,
+  name,
   cuisine,
   location,
   originalPrice,
@@ -53,7 +53,7 @@ export function FoodCard({
       <div className="relative h-48 w-full overflow-hidden bg-gray-100 shrink-0">
         <Image 
           src={imageUrl} 
-          alt={foodName} 
+          alt={name} 
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -71,7 +71,7 @@ export function FoodCard({
       <div className="p-4 flex flex-col flex-grow">
         <div className="mb-3">
           <p className="text-xs font-medium text-muted uppercase tracking-wider mb-1">{restaurantName}</p>
-          <h3 className="font-bold text-lg leading-tight text-foreground line-clamp-1">{foodName}</h3>
+          <h3 className="font-bold text-lg leading-tight text-foreground line-clamp-1">{name}</h3>
         </div>
 
         {/* Next Discount Info */}

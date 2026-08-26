@@ -6,7 +6,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/Button';
 import { DiscountBadge } from '@/components/ui/DiscountBadge';
-import { MapPin, Clock, ChevronLeft, Info, AlertTriangle, TrendingDown } from 'lucide-react';
+import { MapPin, Clock, ChevronLeft, Info, AlertTriangle, TrendingDown, Star } from 'lucide-react';
 import { getFoodWithRestaurantInfo } from '@/lib/data';
 import { getCurrentPricing } from '@/lib/pricing';
 import { DiscountTimeline } from '@/components/ui/DiscountTimeline';
@@ -64,13 +64,13 @@ export default function FoodDetailPage({ params }: { params: Promise<{ id: strin
             <div className="relative h-64 md:h-96 w-full">
               <Image 
                 src={food.imageUrl} 
-                alt={food.foodName} 
+                alt={food.name} 
                 fill
                 className="object-cover"
                 priority
               />
               <div className="absolute top-4 left-4">
-                <DiscountBadge discountPercent={food.discountPercent} className="text-sm px-3 py-1.5" />
+                <DiscountBadge discountPercent={pricing.currentDiscount} className="text-sm px-3 py-1.5" />
               </div>
             </div>
 
@@ -91,7 +91,7 @@ export default function FoodDetailPage({ params }: { params: Promise<{ id: strin
                         </span>
                       ))}
                     </div>
-                    <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{food.foodName}</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{food.name}</h1>
                     <p className="text-lg text-muted">{food.restaurantName}</p>
                   </div>
 
@@ -111,7 +111,7 @@ export default function FoodDetailPage({ params }: { params: Promise<{ id: strin
                       <Clock className="w-5 h-5 text-muted shrink-0 mt-0.5" />
                       <div>
                         <p className="font-medium">Pickup Window</p>
-                        <p className="text-muted">{food.pickupTime}</p>
+                        <p className="text-muted">{food.pickupStart} – {food.pickupEnd}</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
@@ -129,9 +129,9 @@ export default function FoodDetailPage({ params }: { params: Promise<{ id: strin
                   <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm sticky top-24">
                     <div className="text-center mb-6">
                       <p className="text-muted line-through mb-1">₹{food.originalPrice}</p>
-                      <h2 className="text-4xl font-bold text-foreground mb-2">₹{food.currentPrice}</h2>
+                      <h2 className="text-4xl font-bold text-foreground mb-2">₹{pricing.currentPrice}</h2>
                       <p className="text-brand-orange font-medium text-sm">
-                        Only {food.remainingQuantity} remaining
+                        Only {food.quantity} remaining
                       </p>
                     </div>
 
