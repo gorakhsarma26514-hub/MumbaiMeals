@@ -100,6 +100,8 @@ function InteractivePriceDrop() {
   );
 }
 
+import { ShowcaseSection } from '@/components/sections/ShowcaseSection';
+
 export default function HomePage() {
   return (
     <>
@@ -473,22 +475,25 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
             
             {/* Left Side: Images & Arch */}
-            <div className="flex-1 w-full relative h-[350px] md:h-[550px] flex items-end justify-center mb-12 md:mb-0">
+            <div className="flex-1 w-full relative h-[320px] md:h-[550px] flex items-end justify-center mb-12 md:mb-0">
               {/* Dark Green Arch */}
-              <div className="absolute bottom-0 w-[90%] md:w-[80%] h-[80%] bg-[#1a4a40] rounded-t-full z-0"></div>
+              <div className="absolute bottom-0 w-[95%] md:w-[80%] h-[80%] bg-[#1a4a40] rounded-t-[3rem] md:rounded-t-full z-0"></div>
               
-              {/* Floating Image 1 (Tilted Left) - Video */}
-              <div className="absolute bottom-8 left-2 md:bottom-16 md:left-12 w-36 h-56 md:w-64 md:h-96 rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white -rotate-6 md:rotate-[-15deg] z-10 hover:rotate-[-5deg] transition-transform duration-500">
-                <video autoPlay loop muted playsInline className="object-cover w-full h-full">
-                  <source src="/assets/banner-video2.mp4" type="video/mp4" />
-                </video>
-              </div>
-              
-              {/* Floating Image 2 (Tilted Right) - Video */}
-              <div className="absolute bottom-16 right-2 md:bottom-24 md:right-12 w-36 h-56 md:w-64 md:h-96 rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white rotate-6 md:rotate-[15deg] z-20 hover:rotate-[5deg] transition-transform duration-500">
-                <video autoPlay loop muted playsInline className="object-cover w-full h-full">
-                  <source src="/assets/vidoe2.mp4" type="video/mp4" />
-                </video>
+              {/* Videos Container */}
+              <div className="relative z-10 w-full flex justify-center items-end pb-4 md:pb-16 px-2 md:px-0">
+                {/* Floating Image 1 (Tilted Left) - Video */}
+                <div className="w-[45%] max-w-[160px] aspect-[2/3] sm:max-w-[200px] md:w-64 md:h-96 md:aspect-auto rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white -rotate-12 md:rotate-[-15deg] -mr-6 md:-mr-12 hover:rotate-[-5deg] transition-transform duration-500 bg-gray-200 shrink-0">
+                  <video autoPlay loop muted playsInline className="object-cover w-full h-full">
+                    <source src="/assets/banner-video2.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                
+                {/* Floating Image 2 (Tilted Right) - Video */}
+                <div className="w-[45%] max-w-[160px] aspect-[2/3] sm:max-w-[200px] md:w-64 md:h-96 md:aspect-auto rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white rotate-12 md:rotate-[15deg] -ml-6 md:-ml-12 mb-8 md:mb-12 hover:rotate-[5deg] transition-transform duration-500 bg-gray-200 z-20 shrink-0">
+                  <video autoPlay loop muted playsInline className="object-cover w-full h-full">
+                    <source src="/assets/vidoe2.mp4" type="video/mp4" />
+                  </video>
+                </div>
               </div>
             </div>
 
@@ -517,6 +522,7 @@ export default function HomePage() {
 
       </main>
       
+      <ShowcaseSection />
       <Footer />
     </>
   );

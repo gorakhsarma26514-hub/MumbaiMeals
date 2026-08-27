@@ -16,13 +16,13 @@ interface FilterBarProps {
 
 export function FilterBar({ options, activeId, onSelect, className }: FilterBarProps) {
   return (
-    <div className={cn("flex space-x-2 overflow-x-auto pb-2 scrollbar-hide", className)}>
+    <div className={cn("flex gap-2 overflow-x-auto pb-2 scrollbar-hide max-w-full", className)}>
       {options.map((option) => (
         <button
           key={option.id}
           onClick={() => onSelect(option.id)}
           className={cn(
-            "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
+            "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors shrink-0",
             activeId === option.id
               ? "bg-foreground text-background"
               : "bg-background border border-border text-muted hover:bg-muted hover:text-foreground"

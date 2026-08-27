@@ -39,17 +39,17 @@ function InteractivePriceDrop() {
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Price Overlay */}
-            <div className="absolute bottom-6 left-6 right-6 bg-card/95 backdrop-blur-md p-6 rounded-2xl shadow-xl flex justify-between items-end">
+            <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 bg-card/95 backdrop-blur-md p-4 md:p-6 rounded-2xl shadow-xl flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
               <div>
-                <p className="text-sm font-bold text-muted uppercase tracking-wider mb-1">Example Meal</p>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-4xl font-black text-foreground">₹{schedule[activeTimeIndex].price}</span>
+                <p className="text-xs md:text-sm font-bold text-muted uppercase tracking-wider mb-1">Example Meal</p>
+                <div className="flex items-baseline gap-2 md:gap-3">
+                  <span className="text-3xl md:text-4xl font-black text-foreground">₹{schedule[activeTimeIndex].price}</span>
                   {schedule[activeTimeIndex].discount > 0 && (
-                    <span className="text-lg text-muted line-through font-medium">₹500</span>
+                    <span className="text-base md:text-lg text-muted line-through font-medium">₹500</span>
                   )}
                 </div>
               </div>
-              <div className="text-right">
+              <div className="text-left sm:text-right">
                 {schedule[activeTimeIndex].discount > 0 ? (
                   <span className="inline-flex bg-brand-green/10 text-brand-green font-black text-xl px-4 py-2 rounded-xl">
                     {schedule[activeTimeIndex].discount}% OFF
@@ -473,19 +473,19 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
             
             {/* Left Side: Images & Arch */}
-            <div className="flex-1 w-full relative h-[350px] md:h-[550px] flex items-end justify-center mb-12 md:mb-0">
+            <div className="flex-1 w-full relative h-[300px] md:h-[550px] flex items-end justify-center mb-12 md:mb-0">
               {/* Dark Green Arch */}
-              <div className="absolute bottom-0 w-[90%] md:w-[80%] h-[80%] bg-[#1a4a40] rounded-t-full z-0"></div>
+              <div className="absolute bottom-0 w-[95%] md:w-[80%] h-[80%] bg-[#1a4a40] rounded-t-[3rem] md:rounded-t-full z-0"></div>
               
               {/* Floating Image 1 (Tilted Left) - Video */}
-              <div className="absolute bottom-8 left-2 md:bottom-16 md:left-12 w-36 h-56 md:w-64 md:h-96 rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white -rotate-6 md:rotate-[-15deg] z-10 hover:rotate-[-5deg] transition-transform duration-500">
+              <div className="absolute bottom-8 left-4 md:bottom-16 md:left-12 w-32 h-48 sm:w-40 sm:h-60 md:w-64 md:h-96 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white -rotate-6 md:rotate-[-15deg] z-10 hover:rotate-[-5deg] transition-transform duration-500">
                 <video autoPlay loop muted playsInline className="object-cover w-full h-full">
                   <source src="/assets/banner-video2.mp4" type="video/mp4" />
                 </video>
               </div>
               
               {/* Floating Image 2 (Tilted Right) - Video */}
-              <div className="absolute bottom-16 right-2 md:bottom-24 md:right-12 w-36 h-56 md:w-64 md:h-96 rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white rotate-6 md:rotate-[15deg] z-20 hover:rotate-[5deg] transition-transform duration-500">
+              <div className="absolute bottom-16 right-4 md:bottom-24 md:right-12 w-32 h-48 sm:w-40 sm:h-60 md:w-64 md:h-96 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white rotate-6 md:rotate-[15deg] z-20 hover:rotate-[5deg] transition-transform duration-500">
                 <video autoPlay loop muted playsInline className="object-cover w-full h-full">
                   <source src="/assets/vidoe2.mp4" type="video/mp4" />
                 </video>

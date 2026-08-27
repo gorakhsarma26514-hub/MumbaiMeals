@@ -62,9 +62,9 @@ export default function ExplorePage() {
       <main className="flex-1 bg-background min-h-screen pb-20">
         
         {/* Search Header */}
-        <div className="bg-foreground text-white py-12">
+        <div className="bg-foreground text-white py-8 sm:py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold mb-6">Explore Food Deals in Mumbai</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">Explore Food Deals in Mumbai</h1>
             <div className="relative max-w-2xl">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <Search className="w-5 h-5 text-gray-400" />
@@ -76,6 +76,31 @@ export default function ExplorePage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
+            </div>
+          </div>
+        </div>
+
+        {/* Trending Previews */}
+        <div className="bg-background py-8 sm:py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-xl sm:text-2xl font-black mb-6">Trending Deals Near You</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+              {[
+                { src: '/assets/video.mp4', title: '50% Off Fresh Pizza' },
+                { src: '/assets/banner-video.mp4', title: 'Late Night Biryani' },
+                { src: '/assets/banner-video2.mp4', title: 'Healthy Salads' },
+                { src: '/assets/vidoe2.mp4', title: 'Dessert Specials' }
+              ].map((video, i) => (
+                <div key={i} className="aspect-[3/4] bg-muted rounded-2xl overflow-hidden relative shadow-sm border border-border group hover:shadow-lg transition-all duration-300">
+                  <video autoPlay loop muted playsInline className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700">
+                    <source src={video.src} type="video/mp4" />
+                  </video>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
+                    <p className="text-brand-green font-bold text-xs uppercase tracking-wider mb-1">Trending</p>
+                    <p className="text-white font-bold text-sm sm:text-base leading-tight">{video.title}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -97,9 +122,9 @@ export default function ExplorePage() {
         </div>
 
         {/* Results */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="mb-6 flex justify-between items-center">
-            <h2 className="text-xl font-bold">{filteredFood.length} deals found</h2>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+          <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
+            <h2 className="text-lg sm:text-xl font-bold">{filteredFood.length} deals found</h2>
           </div>
 
           {filteredFood.length > 0 ? (
@@ -111,19 +136,19 @@ export default function ExplorePage() {
               ))}
             </div>
           ) : allFood.length === 0 ? (
-            <div className="text-center py-32 bg-card rounded-3xl border border-border shadow-sm">
-              <div className="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="text-center py-16 sm:py-32 px-4 bg-card rounded-3xl border border-border shadow-sm">
+              <div className="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-6 shrink-0">
                 <Search className="w-8 h-8 text-muted" />
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-foreground">No active deals yet.</h3>
-              <p className="text-muted max-w-md mx-auto">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-foreground break-words">No active deals yet.</h3>
+              <p className="text-muted text-sm sm:text-base max-w-md mx-auto break-words">
                 Once restaurants start listing available food, deals will appear here. Check back later!
               </p>
             </div>
           ) : (
-            <div className="text-center py-20 bg-card rounded-2xl border border-border">
-              <h3 className="text-xl font-bold mb-2">No matches found</h3>
-              <p className="text-muted">Try adjusting your filters or search query.</p>
+            <div className="text-center py-12 sm:py-20 px-4 bg-card rounded-2xl border border-border">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 break-words">No matches found</h3>
+              <p className="text-muted text-sm sm:text-base break-words">Try adjusting your filters or search query.</p>
               <button 
                 className="mt-4 text-brand-green font-medium"
                 onClick={() => { setActiveArea('all'); setActivePreference('all'); setSearchQuery(''); }}

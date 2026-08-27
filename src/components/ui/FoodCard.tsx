@@ -76,25 +76,27 @@ export function FoodCard({
 
         {/* Next Discount Info */}
         {pricing.nextDiscount && (
-          <div className="bg-background rounded-lg p-2.5 mb-3 border border-border flex items-center justify-between">
-            <div className="flex flex-col">
-              <span className="text-[10px] text-muted font-semibold uppercase">Next Drop</span>
-              <span className="text-sm font-bold text-brand-orange">{pricing.nextDiscount}% OFF at {pricing.nextDiscountTime}</span>
+          <div className="bg-background rounded-lg p-2.5 mb-3 border border-border flex items-center justify-between gap-2">
+            <div className="flex flex-col min-w-0">
+              <span className="text-[10px] text-muted font-semibold uppercase truncate">Next Drop</span>
+              <span className="text-sm font-bold text-brand-orange truncate">{pricing.nextDiscount}% OFF at {pricing.nextDiscountTime}</span>
             </div>
             {pricing.countdownMinutes !== null && pricing.countdownMinutes > 0 && (
-               <CountdownTimer targetMinutes={pricing.countdownMinutes} />
+               <div className="shrink-0">
+                 <CountdownTimer targetMinutes={pricing.countdownMinutes} />
+               </div>
             )}
           </div>
         )}
 
         <div className="flex flex-col space-y-1.5 text-xs text-muted mb-4">
-          <div className="flex items-center space-x-1.5">
+          <div className="flex items-center space-x-1.5 min-w-0">
             <MapPin className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">{location} ({distance})</span>
+            <span className="truncate min-w-0">{location} ({distance})</span>
           </div>
-          <div className="flex items-center space-x-1.5">
+          <div className="flex items-center space-x-1.5 min-w-0">
             <Clock className="w-3.5 h-3.5 shrink-0" />
-            <span>{pickupStart} – {pickupEnd}</span>
+            <span className="truncate min-w-0">{pickupStart} – {pickupEnd}</span>
           </div>
         </div>
 
