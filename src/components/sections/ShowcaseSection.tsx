@@ -1,38 +1,97 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 
-const baseItems = [
-  { id: 1, src: '/assets/ice-cream-choclatedrip.mp4', alt: 'Ice Cream Chocolate Drip' },
-  { id: 2, src: '/assets/burger.mp4', alt: 'Premium Burger' },
-  { id: 3, src: '/assets/pizzaaa.mp4', alt: 'Fresh Pizza' },
-  { id: 4, src: '/assets/donut.mp4', alt: 'Donut' },
-  { id: 5, src: '/assets/coffeee.mp4', alt: 'Coffee' },
-  { id: 6, src: '/assets/fries.mp4', alt: 'Fries' },
-  { id: 7, src: '/assets/dessertt.mp4', alt: 'Dessert' },
-  { id: 8, src: '/assets/cake.mp4', alt: 'Cake' },
-  { id: 9, src: '/assets/banner-video.mp4', alt: 'Banner Deal' },
-  { id: 10, src: '/assets/vidoe2.mp4', alt: 'Food Assortment' },
-  { id: 11, src: '/assets/video.mp4', alt: 'Trending Meal' }
+const images = [
+  { id: 1,  src: '/assets/pizza.jpg',         alt: 'Cheese Pizza' },
+  { id: 2,  src: '/assets/food1.jpg',          alt: 'Gourmet Meal' },
+  { id: 3,  src: '/assets/salad.jpg',          alt: 'Fresh Salad' },
+  { id: 4,  src: '/assets/chicken.jpg',        alt: 'Spicy Chicken' },
+  { id: 5,  src: '/assets/roll.jpg',           alt: 'Kathi Roll' },
+  { id: 6,  src: '/assets/halffry.jpg',        alt: 'Egg Half Fry' },
+  { id: 7,  src: '/assets/lolipop.jpg',        alt: 'Chicken Lollipop' },
+  { id: 8,  src: '/assets/avacado-toast.jpg',  alt: 'Avocado Toast' },
+  { id: 9,  src: '/assets/burg.jpg',           alt: 'Juicy Burger' },
+  { id: 10, src: '/assets/creamroll.jpg',      alt: 'Cream Roll' },
+  { id: 11, src: '/assets/creamy-noodles.jpg', alt: 'Creamy Noodles' },
+  { id: 12, src: '/assets/crossant.jpg',       alt: 'Buttery Croissant' },
+  { id: 13, src: '/assets/dessert.jpg',        alt: 'Sweet Dessert' },
+  { id: 14, src: '/assets/donut.jpg',          alt: 'Fresh Donut' },
+  { id: 15, src: '/assets/momo.png',           alt: 'Steamed Momos' },
+  { id: 16, src: '/assets/omlet.jpg',          alt: 'Fluffy Omelette' },
+  { id: 17, src: '/assets/pasta.jpg',          alt: 'Italian Pasta' },
+  { id: 18, src: '/assets/sandwich.jpg',       alt: 'Club Sandwich' },
 ];
 
-// Duplicate items to create a seamless infinite scrolling loop
-const sliderItems = [...baseItems, ...baseItems.map(item => ({ ...item, id: item.id + 100 }))];
+// Triplicate for seamless infinite loop
+const allItems = [...images, ...images, ...images];
 
 export function ShowcaseSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const animFrameRef = useRef<number | null>(null);
+  const pausedRef = useRef(false);
+  const posRef = useRef(0);
+  const [mounted, setMounted] = useState(false);
+
+  const SPEED = 1.2; // px per frame
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const track = trackRef.current;
+    if (!track) return;
+
+    const getSetWidth = () => {
+      const child = track.children[0] as HTMLElement | null;
+      if (!child) return 0;
+      const itemWidth = child.offsetWidth;
+      const gap = 24; // gap-6 = 24px
+      return images.length * (itemWidth + gap);
+    };
+
+    const animate = () => {
+      if (!pausedRef.current) {
+        posRef.current += SPEED;
+        const setWidth = getSetWidth();
+        if (setWidth > 0 && posRef.current >= setWidth) {
+          posRef.current -= setWidth;
+        }
+        if (track) {
+          track.style.transform = `translateX(-${posRef.current}px)`;
+        }
+      }
+      animFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animFrameRef.current = requestAnimationFrame(animate);
+
+    const wrapper = wrapperRef.current;
+    const pause = () => { pausedRef.current = true; };
+    const resume = () => { pausedRef.current = false; };
+
+    wrapper?.addEventListener('mouseenter', pause);
+    wrapper?.addEventListener('mouseleave', resume);
+
+    return () => {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      wrapper?.removeEventListener('mouseenter', pause);
+      wrapper?.removeEventListener('mouseleave', resume);
+    };
+  }, [mounted]);
 
   return (
-    <section 
-      ref={containerRef}
-      className="relative w-full py-16 md:py-24 bg-background border-t border-border overflow-hidden"
-    >
-      {/* Subtle Background Glows */}
-      <div className="absolute top-0 right-0 w-[50vw] h-[50vw] max-w-[600px] bg-brand-green/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] max-w-[600px] bg-brand-orange/5 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+    <section className="relative w-full py-16 md:py-24 bg-background border-t border-border overflow-hidden">
+      {/* Background glows */}
+      <div className="absolute top-0 right-0 w-[50vw] h-[50vw] max-w-[600px] bg-brand-green/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] max-w-[600px] bg-brand-orange/5 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
-      {/* Heading Layer */}
+      {/* Heading */}
       <div className="relative z-20 text-center px-4 max-w-4xl mx-auto mb-10 md:mb-16">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-4 tracking-tighter">
           Discover. <span className="text-brand-green">Taste.</span> Save.
@@ -42,44 +101,42 @@ export function ShowcaseSection() {
         </p>
       </div>
 
-      {/* Auto-scrolling Slider Container */}
-      <div className="relative z-30 w-full overflow-hidden flex">
-        <motion.div 
-          className="flex gap-4 md:gap-8 px-2 md:px-4 w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            repeat: Infinity,
-            ease: "linear",
-            duration: 35 // 35 seconds for one loop, adjust if it's too fast/slow
-          }}
+      {/* Carousel wrapper with edge fade */}
+      <div
+        ref={wrapperRef}
+        className="relative z-30 w-full overflow-hidden"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+        }}
+      >
+        {/* Sliding track */}
+        <div
+          ref={trackRef}
+          className="flex gap-6 pb-4"
+          style={{ width: 'max-content', willChange: 'transform' }}
         >
-          {sliderItems.map((item) => (
-            <div 
-              key={item.id} 
-              className="relative shrink-0 w-64 md:w-80 lg:w-96 aspect-[4/5] rounded-[2rem] overflow-hidden shadow-lg border border-border bg-card group hover:scale-[1.02] transition-transform duration-500"
+          {allItems.map((item, idx) => (
+            <div
+              key={`${item.id}-${idx}`}
+              className="relative shrink-0 overflow-hidden rounded-3xl shadow-lg border border-border bg-card group"
+              style={{
+                width: 'clamp(200px, 22vw, 300px)',
+                aspectRatio: '4/5',
+              }}
             >
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
-                className="object-cover w-full h-full"
-              >
-                <source src={item.src} type="video/mp4" />
-              </video>
-              
-              {/* Overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 md:p-8 pointer-events-none">
-                 <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                   <p className="text-brand-green font-bold text-xs uppercase tracking-wider mb-1">Featured</p>
-                   <p className="text-white font-bold text-xl md:text-2xl">{item.alt}</p>
-                 </div>
-              </div>
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                sizes="(max-width: 768px) 200px, 300px"
+                className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                loading="lazy"
+              />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
-      
     </section>
   );
 }

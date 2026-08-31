@@ -183,6 +183,37 @@ export default function HomePage() {
           <div className="absolute bottom-0 left-0 w-[120vw] h-[120vw] max-w-[600px] max-h-[600px] bg-brand-orange/5 rounded-full blur-[60px] md:blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
         </section>
 
+        {/* HOW IT WORKS */}
+        <section className="py-16 md:py-32 bg-background border-t border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-black mb-4">How It Works</h2>
+              <p className="text-xl text-muted font-medium max-w-2xl mx-auto">Three simple steps to enjoy great food while fighting waste.</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 md:gap-12 relative">
+              <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-1 border-t-2 border-dashed border-border"></div>
+              
+              <div className="relative bg-card p-8 rounded-3xl border border-border shadow-sm text-center flex flex-col items-center z-10">
+                <div className="w-20 h-20 bg-brand-orange text-white rounded-full flex items-center justify-center text-2xl font-black mb-6 shadow-lg">1</div>
+                <h3 className="text-2xl font-bold mb-3">List</h3>
+                <p className="text-muted font-medium">Restaurants list their surplus fresh food at a discount before closing time.</p>
+              </div>
+
+              <div className="relative bg-card p-8 rounded-3xl border border-border shadow-sm text-center flex flex-col items-center z-10 md:translate-y-4">
+                <div className="w-20 h-20 bg-brand-orange text-white rounded-full flex items-center justify-center text-2xl font-black mb-6 shadow-lg">2</div>
+                <h3 className="text-2xl font-bold mb-3">Discover</h3>
+                <p className="text-muted font-medium">You find nearby deals on the app. The later you wait, the better the discount.</p>
+              </div>
+
+              <div className="relative bg-card p-8 rounded-3xl border border-border shadow-sm text-center flex flex-col items-center z-10">
+                <div className="w-20 h-20 bg-brand-orange text-white rounded-full flex items-center justify-center text-2xl font-black mb-6 shadow-lg">3</div>
+                <h3 className="text-2xl font-bold mb-3">Pickup</h3>
+                <p className="text-muted font-medium">Head to the restaurant, show your order, and enjoy a delicious meal!</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 2: THE MAIN IDEA */}
         <section className="py-16 md:py-32 bg-card relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -254,17 +285,77 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Empty State Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3].map((item) => (
-                <div key={item} className="bg-card rounded-[2rem] p-8 border border-border shadow-sm text-center flex flex-col items-center justify-center aspect-[4/3]">
-                  <div className="w-16 h-16 bg-background rounded-full flex items-center justify-center mb-6">
-                    <Store className="w-8 h-8 text-muted" />
+            {/* Enhanced Deal Cards Grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {[
+                { id: 1, title: 'Fresh Salad Bowl',     restaurant: 'Green Bites',    price: 150, original: 300, img: '/assets/salad.jpg',     discount: '50% OFF', rating: '4.6', reviews: 120, distance: '1.2 km', pickup: '15 min', urgencyBadge: '🔥 Popular', onlyLeft: null },
+                { id: 2, title: 'Gourmet Pizza',         restaurant: 'Pizza Milano',   price: 250, original: 500, img: '/assets/pizza.jpg',     discount: '50% OFF', rating: '4.8', reviews: 340, distance: '0.8 km', pickup: '20 min', urgencyBadge: null,           onlyLeft: 'Only 3 left' },
+                { id: 3, title: 'Spicy Chicken Roll',   restaurant: 'Wrap It Up',     price: 100, original: 200, img: '/assets/roll.jpg',      discount: '50% OFF', rating: '4.4', reviews: 89,  distance: '1.5 km', pickup: '10 min', urgencyBadge: '⏰ Ends in 2h', onlyLeft: null },
+                { id: 4, title: 'Avocado Toast',         restaurant: 'Café Greens',    price: 120, original: 240, img: '/assets/avacado-toast.jpg', discount: '50% OFF', rating: '4.5', reviews: 67, distance: '2.1 km', pickup: '12 min', urgencyBadge: null,       onlyLeft: null },
+                { id: 5, title: 'Creamy Pasta',          restaurant: 'La Cucina',      price: 180, original: 360, img: '/assets/pasta.jpg',      discount: '50% OFF', rating: '4.7', reviews: 210, distance: '0.5 km', pickup: '18 min', urgencyBadge: null,           onlyLeft: 'Only 2 left' },
+                { id: 6, title: 'Club Sandwich',         restaurant: 'Deli House',     price: 130, original: 260, img: '/assets/sandwich.jpg',   discount: '50% OFF', rating: '4.3', reviews: 54,  distance: '1.8 km', pickup: '8 min',  urgencyBadge: '🔥 Popular', onlyLeft: null },
+              ].map((item) => (
+                <div key={item.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col group">
+                  {/* Image */}
+                  <div className="aspect-[4/3] relative w-full overflow-hidden shrink-0">
+                    <Image src={item.img} alt={item.title} fill loading="lazy" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    {/* Discount badge */}
+                    <div className="absolute top-3 right-3 z-20 bg-brand-accent text-foreground text-xs font-black px-2.5 py-1 rounded-full shadow">
+                      {item.discount}
+                    </div>
+                    {/* Urgency badge */}
+                    {item.urgencyBadge && (
+                      <div className="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-bold px-2.5 py-1 rounded-full shadow">
+                        {item.urgencyBadge}
+                      </div>
+                    )}
                   </div>
-                  <h3 className="text-xl font-bold mb-2">Deals from restaurants near you will appear here.</h3>
-                  <p className="text-muted text-sm max-w-xs mx-auto">Once local restaurants start listing their food, this section will be filled with delicious options.</p>
+
+                  {/* Body */}
+                  <div className="p-5 flex-1 flex flex-col gap-3">
+                    {/* Title */}
+                    <h3 className="text-base font-bold text-foreground leading-tight">{item.title}</h3>
+
+                    {/* Restaurant + meta row */}
+                    <div className="flex flex-col gap-1.5">
+                      <p className="text-sm text-muted font-medium flex items-center gap-1">
+                        <Store className="w-3.5 h-3.5 shrink-0" /> {item.restaurant}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted font-medium">
+                        <span className="flex items-center gap-1">⭐ {item.rating} ({item.reviews})</span>
+                        <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> {item.distance}</span>
+                        <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Ready in {item.pickup}</span>
+                      </div>
+                    </div>
+
+                    {/* Price + CTA */}
+                    <div className="mt-auto pt-3 border-t border-gray-100 flex flex-col gap-2">
+                      <div className="flex items-baseline justify-between">
+                        <div className="flex items-baseline gap-1.5">
+                          <span className="text-xl font-black text-brand-green">₹{item.price}</span>
+                          <span className="text-xs text-muted line-through">₹{item.original}</span>
+                        </div>
+                        {item.onlyLeft && (
+                          <span className="text-xs font-bold text-red-500">{item.onlyLeft}</span>
+                        )}
+                      </div>
+                      <Link href="/explore" className="block w-full">
+                        <button className="w-full py-2.5 rounded-xl text-sm font-bold text-white transition-all duration-200 hover:opacity-90 hover:shadow-md" style={{background:'#0F5132'}}>
+                          Reserve
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               ))}
+            </div>
+
+            {/* View all deals */}
+            <div className="flex justify-end mt-8">
+              <Link href="/explore" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-green hover:underline underline-offset-4 transition-colors">
+                View all deals <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </section>
@@ -401,10 +492,18 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="bg-background border border-border rounded-[2rem] p-12 max-w-3xl mx-auto text-center shadow-sm">
-              <MapPin className="w-12 h-12 text-muted mx-auto mb-6" />
-              <h3 className="text-2xl font-bold mb-2">Deals will appear here as restaurants join 50% Food.</h3>
-              <p className="text-muted font-medium">Select an area above to filter available options.</p>
+            <div className="bg-card border-2 border-brand-green/20 rounded-[2rem] p-12 max-w-3xl mx-auto text-center shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              <Store className="w-16 h-16 text-brand-green mx-auto mb-6" />
+              <h3 className="text-3xl font-black mb-4">Be Among Our First Partner Restaurants in Mumbai</h3>
+              <p className="text-lg text-muted font-medium mb-8 max-w-lg mx-auto relative z-10">
+                We're currently onboarding select partners in Mumbai. Join now to turn your surplus food into extra revenue.
+              </p>
+              <Link href="/restaurants/partner" className="relative z-10 inline-block">
+                <Button size="lg" className="px-8 py-4 bg-brand-orange hover:bg-brand-orange/90 text-white font-bold rounded-2xl shadow-lg shadow-brand-orange/20 transition-transform hover:-translate-y-1">
+                  Partner With Us Today
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
@@ -420,103 +519,128 @@ export default function HomePage() {
               <p className="text-lg text-muted font-medium">Enjoy premium meals while making a positive impact.</p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              
-              {/* Card 1 */}
-              <div className="relative bg-card rounded-[2.5rem] p-10 border border-border shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-brand-green/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-brand-green/10 transition-colors duration-500"></div>
-                <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-brand-green/10 to-brand-green/5 rounded-[1.25rem] flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300 border border-brand-green/10 shadow-sm">
-                  <TrendingDown className="w-8 h-8 text-brand-green" />
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+
+              {/* Card 1 — Save More */}
+              <div className="relative flex flex-col bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+                <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center mb-6 shrink-0">
+                  <TrendingDown className="w-5 h-5" style={{color:'#0F5132'}} />
                 </div>
-                <h3 className="relative z-10 text-2xl font-black mb-3 tracking-tight text-foreground group-hover:text-brand-green transition-colors">SAVE MORE</h3>
-                <p className="relative z-10 text-lg text-muted font-medium leading-relaxed">Get better prices on high-quality, freshly prepared food.</p>
-                <div className="absolute bottom-0 left-0 w-0 h-1.5 bg-brand-green group-hover:w-full transition-all duration-500 ease-out"></div>
+                <h3 className="text-[18px] font-bold uppercase tracking-tight text-foreground mb-3">SAVE MORE</h3>
+                <p className="text-[15px] text-muted leading-[1.6] font-medium">Get better prices on high-quality, freshly prepared food.</p>
+                <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-green-600 group-hover:w-full transition-all duration-500 ease-out rounded-b-2xl" />
               </div>
 
-              {/* Card 2 */}
-              <div className="relative bg-card rounded-[2.5rem] p-10 border border-border shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-blue-500/10 transition-colors duration-500"></div>
-                <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-blue-500/10 to-blue-500/5 rounded-[1.25rem] flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 border border-blue-500/10 shadow-sm">
-                  <Search className="w-8 h-8 text-blue-500" />
+              {/* Card 2 — Discover More */}
+              <div className="relative flex flex-col bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+                <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-6 shrink-0">
+                  <Search className="w-5 h-5" style={{color:'#0F5132'}} />
                 </div>
-                <h3 className="relative z-10 text-2xl font-black mb-3 tracking-tight text-foreground group-hover:text-blue-500 transition-colors">DISCOVER MORE</h3>
-                <p className="relative z-10 text-lg text-muted font-medium leading-relaxed">Find amazing food from top-rated restaurants around you.</p>
-                <div className="absolute bottom-0 left-0 w-0 h-1.5 bg-blue-500 group-hover:w-full transition-all duration-500 ease-out"></div>
+                <h3 className="text-[18px] font-bold uppercase tracking-tight text-foreground mb-3">DISCOVER MORE</h3>
+                <p className="text-[15px] text-muted leading-[1.6] font-medium">Find amazing food from top-rated restaurants around you.</p>
+                <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-green-600 group-hover:w-full transition-all duration-500 ease-out rounded-b-2xl" />
               </div>
 
-              {/* Card 3 */}
-              <div className="relative bg-card rounded-[2.5rem] p-10 border border-border shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-brand-orange/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-brand-orange/10 transition-colors duration-500"></div>
-                <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-brand-orange/10 to-brand-orange/5 rounded-[1.25rem] flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300 border border-brand-orange/10 shadow-sm">
-                  <Clock className="w-8 h-8 text-brand-orange" />
+              {/* Card 3 — Time It Right */}
+              <div className="relative flex flex-col bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+                <div className="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center mb-6 shrink-0">
+                  <Clock className="w-5 h-5" style={{color:'#0F5132'}} />
                 </div>
-                <h3 className="relative z-10 text-2xl font-black mb-3 tracking-tight text-foreground group-hover:text-brand-orange transition-colors">TIME IT RIGHT</h3>
-                <p className="relative z-10 text-lg text-muted font-medium leading-relaxed">Watch discounts increase throughout the evening.</p>
-                <div className="absolute bottom-0 left-0 w-0 h-1.5 bg-brand-orange group-hover:w-full transition-all duration-500 ease-out"></div>
+                <h3 className="text-[18px] font-bold uppercase tracking-tight text-foreground mb-3">TIME IT RIGHT</h3>
+                <p className="text-[15px] text-muted leading-[1.6] font-medium">Watch discounts increase throughout the evening.</p>
+                <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-green-600 group-hover:w-full transition-all duration-500 ease-out rounded-b-2xl" />
               </div>
 
-              {/* Card 4 */}
-              <div className="relative bg-card rounded-[2.5rem] p-10 border border-border shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-emerald-500/10 transition-colors duration-500"></div>
-                <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 rounded-[1.25rem] flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 border border-emerald-500/10 shadow-sm">
-                  <Leaf className="w-8 h-8 text-emerald-500" />
+              {/* Card 4 — Waste Less */}
+              <div className="relative flex flex-col bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+                <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center mb-6 shrink-0">
+                  <Leaf className="w-5 h-5" style={{color:'#0F5132'}} />
                 </div>
-                <h3 className="relative z-10 text-2xl font-black mb-3 tracking-tight text-foreground group-hover:text-emerald-500 transition-colors">WASTE LESS</h3>
-                <p className="relative z-10 text-lg text-muted font-medium leading-relaxed">Help local businesses reduce their daily food waste.</p>
-                <div className="absolute bottom-0 left-0 w-0 h-1.5 bg-emerald-500 group-hover:w-full transition-all duration-500 ease-out"></div>
+                <h3 className="text-[18px] font-bold uppercase tracking-tight text-foreground mb-3">WASTE LESS</h3>
+                <p className="text-[15px] text-muted leading-[1.6] font-medium">Help local businesses reduce their daily food waste.</p>
+                <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-green-600 group-hover:w-full transition-all duration-500 ease-out rounded-b-2xl" />
               </div>
 
             </div>
           </div>
         </section>
 
-        {/* SECTION 9: FINAL CTA (Image Inspired Layout) */}
-        <section className="bg-background pt-12 md:pt-20 overflow-hidden border-t border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
-            
-            {/* Left Side: Images & Arch */}
-            <div className="flex-1 w-full relative h-[320px] md:h-[550px] flex items-end justify-center mb-12 md:mb-0">
-              {/* Dark Green Arch */}
-              <div className="absolute bottom-0 w-[95%] md:w-[80%] h-[80%] bg-[#1a4a40] rounded-t-[3rem] md:rounded-t-full z-0"></div>
-              
-              {/* Videos Container */}
-              <div className="relative z-10 w-full flex justify-center items-end pb-4 md:pb-16 px-2 md:px-0">
-                {/* Floating Image 1 (Tilted Left) - Video */}
-                <div className="w-[45%] max-w-[160px] aspect-[2/3] sm:max-w-[200px] md:w-64 md:h-96 md:aspect-auto rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white -rotate-12 md:rotate-[-15deg] -mr-6 md:-mr-12 hover:rotate-[-5deg] transition-transform duration-500 bg-gray-200 shrink-0">
-                  <video autoPlay loop muted playsInline className="object-cover w-full h-full">
-                    <source src="/assets/banner-video2.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                
-                {/* Floating Image 2 (Tilted Right) - Video */}
-                <div className="w-[45%] max-w-[160px] aspect-[2/3] sm:max-w-[200px] md:w-64 md:h-96 md:aspect-auto rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-2 md:border-4 border-white rotate-12 md:rotate-[15deg] -ml-6 md:-ml-12 mb-8 md:mb-12 hover:rotate-[5deg] transition-transform duration-500 bg-gray-200 z-20 shrink-0">
-                  <video autoPlay loop muted playsInline className="object-cover w-full h-full">
-                    <source src="/assets/vidoe2.mp4" type="video/mp4" />
-                  </video>
+        {/* SECTION 9: FINAL CTA — Premium Redesign */}
+        <section className="bg-background pt-16 md:pt-24 pb-0 overflow-hidden border-t border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12 md:gap-0">
+
+            {/* Left Side: Stacked Card Composition */}
+            <div className="flex-1 w-full relative flex items-center justify-center min-h-[340px] md:min-h-[520px]">
+              {/* Warm radial glow */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div style={{background:'radial-gradient(ellipse 70% 60% at 50% 60%, rgba(255,107,74,0.18) 0%, transparent 75%)'}} className="w-full h-full" />
+              </div>
+
+              {/* Card 1 — back left, -8deg */}
+              <div className="absolute left-[5%] md:left-[8%] top-[10%] w-[42%] max-w-[190px] md:max-w-[220px] aspect-[3/4] rounded-[24px] overflow-hidden shadow-xl border-2 border-white/80" style={{transform:'rotate(-8deg)', zIndex:1}}>
+                <Image src="/assets/sandwich.jpg" alt="Food" fill loading="lazy" className="object-cover" />
+              </div>
+
+              {/* Card 2 — front center, 0deg */}
+              <div className="relative w-[44%] max-w-[200px] md:max-w-[240px] aspect-[3/4] rounded-[24px] overflow-hidden shadow-2xl border-2 border-white" style={{transform:'rotate(0deg)', zIndex:3}}>
+                <Image src="/assets/pasta.jpg" alt="Food" fill loading="lazy" className="object-cover" />
+              </div>
+
+              {/* Card 3 — back right, +6deg */}
+              <div className="absolute right-[5%] md:right-[8%] top-[10%] w-[42%] max-w-[190px] md:max-w-[220px] aspect-[3/4] rounded-[24px] overflow-hidden shadow-xl border-2 border-white/80" style={{transform:'rotate(6deg)', zIndex:2}}>
+                <Image src="/assets/dessert.jpg" alt="Food" fill loading="lazy" className="object-cover" />
+              </div>
+
+              {/* Floating stat badge */}
+              <div className="absolute bottom-[6%] left-1/2 -translate-x-1/2 z-10 bg-white rounded-2xl shadow-2xl px-4 py-2.5 flex items-center gap-2.5 whitespace-nowrap border border-orange-100">
+                <span className="text-xl">🍽️</span>
+                <div>
+                  <p className="text-xs text-gray-400 font-medium leading-none mb-0.5">Meals Saved</p>
+                  <p className="text-sm font-black text-gray-800 leading-none">50,000+</p>
                 </div>
               </div>
             </div>
 
             {/* Right Side: Text & CTA */}
-            <div className="flex-1 w-full pb-16 md:py-16 md:pl-16 text-center md:text-left z-30">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
-                Ready to Eat Well,<br/> Waste Less?
+            <div className="flex-1 w-full pb-16 md:py-16 md:pl-14 text-center md:text-left z-30">
+              {/* Eyebrow label */}
+              <div className="inline-flex items-center gap-2 mb-5">
+                <span className="w-2 h-2 rounded-full bg-brand-orange shrink-0" />
+                <span className="text-xs font-bold tracking-widest uppercase text-brand-orange">Sustainable Eating</span>
+              </div>
+
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground mb-4 leading-tight tracking-tight">
+                Ready to Eat Well,<br/>
+                <span style={{color:'#FF6B4A'}}>Waste Less?</span>
               </h2>
-              
-              {/* Divider Line */}
-              <div className="w-16 h-1 bg-foreground mx-auto md:mx-0 mb-6"></div>
-              
-              <p className="text-lg text-muted mb-8 max-w-md mx-auto md:mx-0 font-medium leading-relaxed">
-                Join our community of smart foodies and sustainable restaurants rescuing delicious, fresh meals every single day.
+
+              {/* Orange accent divider */}
+              <div className="w-[60px] h-[3px] rounded-full mx-auto md:mx-0 mb-6" style={{background:'#FF6B4A'}} />
+
+              <p className="text-base md:text-lg text-muted mb-8 max-w-md mx-auto md:mx-0 font-medium leading-relaxed">
+                Join 10,000+ smart foodies rescuing fresh, delicious meals from 200+ partner restaurants — every single day, at up to 70% off.
               </p>
-              
-              <Link href="/explore">
-                <Button size="lg" className="bg-[#00a651] hover:bg-[#008a43] text-white px-10 py-6 text-lg font-bold shadow-lg shadow-[#00a651]/30 rounded-lg">
-                  Explore Deals Now
-                </Button>
-              </Link>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-center md:items-start gap-3 mb-6">
+                <Link href="/explore">
+                  <button className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white text-base font-bold shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl" style={{background:'linear-gradient(135deg,#FF6B4A 0%,#e8440f 100%)', boxShadow:'0 8px 24px rgba(255,107,74,0.35)'}}>
+                    Find Deals Near You
+                  </button>
+                </Link>
+                <Link href="/how-it-works" className="text-sm font-semibold text-foreground hover:text-brand-orange transition-colors underline-offset-4 hover:underline flex items-center gap-1">
+                  See how it works <span aria-hidden>→</span>
+                </Link>
+              </div>
+
+              {/* Trust line */}
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1 text-xs text-muted font-medium">
+                <span className="flex items-center gap-1"><span className="text-brand-green font-bold">✓</span> No signup fee</span>
+                <span className="flex items-center gap-1"><span className="text-brand-green font-bold">✓</span> Cancel anytime</span>
+                <span className="flex items-center gap-1"><span className="text-yellow-500">★</span> 4.8 rated</span>
+              </div>
             </div>
-            
+
           </div>
         </section>
 

@@ -1,11 +1,34 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { FoodCard } from '@/components/ui/FoodCard';
 import { FilterBar } from '@/components/ui/FilterBar';
 import { Search } from 'lucide-react';
 import { getFoodWithRestaurantInfo } from '@/lib/data';
+
+const ALL_MEDIA = [
+  { src: '/assets/banner-video.mp4', title: 'Late Night Biryani', type: 'video' },
+  { src: '/assets/banner-video2.mp4', title: 'Healthy Salads', type: 'video' },
+  { src: '/assets/burger.mp4', title: 'Juicy Burgers', type: 'video' },
+  { src: '/assets/cake.mp4', title: 'Sweet Cakes', type: 'video' },
+  { src: '/assets/coffeee.mp4', title: 'Morning Coffee', type: 'video' },
+  { src: '/assets/dessertt.mp4', title: 'Delicious Desserts', type: 'video' },
+  { src: '/assets/donut.mp4', title: 'Fresh Donuts', type: 'video' },
+  { src: '/assets/fries.mp4', title: 'Crispy Fries', type: 'video' },
+  { src: '/assets/ice-cream-choclatedrip.mp4', title: 'Chocolate Drip', type: 'video' },
+  { src: '/assets/pizzaaa.mp4', title: 'Woodfired Pizza', type: 'video' },
+  { src: '/assets/video.mp4', title: '50% Off Fresh Pizza', type: 'video' },
+  { src: '/assets/vidoe2.mp4', title: 'Dessert Specials', type: 'video' },
+  { src: '/assets/chicken.jpg', title: 'Spicy Chicken', type: 'image' },
+  { src: '/assets/food1.jpg', title: 'Gourmet Meal', type: 'image' },
+  { src: '/assets/halffry.jpg', title: 'Egg Half Fry', type: 'image' },
+  { src: '/assets/lolipop.jpg', title: 'Chicken Lollipop', type: 'image' },
+  { src: '/assets/pizza.jpg', title: 'Cheese Pizza', type: 'image' },
+  { src: '/assets/roll.jpg', title: 'Kathi Roll', type: 'image' },
+  { src: '/assets/salad.jpg', title: 'Fresh Salad', type: 'image' }
+];
 
 const AREAS = [
   { id: 'all', label: 'All Mumbai' },
@@ -85,19 +108,18 @@ export default function ExplorePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-xl sm:text-2xl font-black mb-6">Trending Deals Near You</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-              {[
-                { src: '/assets/video.mp4', title: '50% Off Fresh Pizza' },
-                { src: '/assets/banner-video.mp4', title: 'Late Night Biryani' },
-                { src: '/assets/banner-video2.mp4', title: 'Healthy Salads' },
-                { src: '/assets/vidoe2.mp4', title: 'Dessert Specials' }
-              ].map((video, i) => (
+              {ALL_MEDIA.map((media, i) => (
                 <div key={i} className="aspect-[3/4] bg-muted rounded-2xl overflow-hidden relative shadow-sm border border-border group hover:shadow-lg transition-all duration-300">
-                  <video autoPlay loop muted playsInline className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700">
-                    <source src={video.src} type="video/mp4" />
-                  </video>
+                  {media.type === 'video' ? (
+                    <video autoPlay loop muted playsInline className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700">
+                      <source src={media.src} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <Image src={media.src} alt={media.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
                     <p className="text-brand-green font-bold text-xs uppercase tracking-wider mb-1">Trending</p>
-                    <p className="text-white font-bold text-sm sm:text-base leading-tight">{video.title}</p>
+                    <p className="text-white font-bold text-sm sm:text-base leading-tight">{media.title}</p>
                   </div>
                 </div>
               ))}
@@ -158,6 +180,52 @@ export default function ExplorePage() {
             </div>
           )}
         </div>
+
+        {/* Minimal Auto-Scrolling Image Gallery */}
+        <div className="bg-background pt-10 pb-16 border-t border-border mt-auto overflow-hidden">
+          <style>{`
+            @keyframes marquee {
+              0% { transform: translateX(0%); }
+              100% { transform: translateX(-100%); }
+            }
+            .animate-marquee {
+              animation: marquee 25s linear infinite;
+            }
+            .group-marquee:hover .animate-marquee {
+              animation-play-state: paused;
+            }
+          `}</style>
+          
+          <div className="relative w-full flex group-marquee">
+            {/* First Set */}
+            <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 animate-marquee shrink-0 w-max">
+              {ALL_MEDIA.filter(m => m.type === 'image').map((media, i) => (
+                <div key={`gallery-1-${i}`} className="relative shrink-0 w-56 sm:w-64 md:w-72 lg:w-80 xl:w-[300px] aspect-[4/3] rounded-3xl overflow-hidden group">
+                  <Image 
+                    src={media.src} 
+                    alt="Gallery Image" 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" 
+                  />
+                </div>
+              ))}
+            </div>
+            {/* Second Set (Duplicate for seamless infinite scroll) */}
+            <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 animate-marquee shrink-0 w-max" aria-hidden="true">
+              {ALL_MEDIA.filter(m => m.type === 'image').map((media, i) => (
+                <div key={`gallery-2-${i}`} className="relative shrink-0 w-56 sm:w-64 md:w-72 lg:w-80 xl:w-[300px] aspect-[4/3] rounded-3xl overflow-hidden group">
+                  <Image 
+                    src={media.src} 
+                    alt="Gallery Image" 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" 
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </main>
       <Footer />
     </>

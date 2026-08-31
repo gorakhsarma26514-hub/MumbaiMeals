@@ -1,21 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf9f6; /* Warm cream */
-  --foreground: #111111; /* Deep charcoal */
-  --accent-green: #84cc16; /* Fresh lime green */
-  --accent-green-hover: #65a30d;
-  --secondary-orange: #fbbf24; /* Soft orange/yellow */
+  --background: #fdfbf7; /* Clean off-white */
+  --foreground: #1a1a1a; /* Dark charcoal */
+  --accent-green: #2d6a4f; /* Deep green */
+  --accent-green-hover: #1b4332;
+  --secondary-orange: #ff6b4a; /* Warm coral/orange */
+  --accent-discount: #ffc93c; /* Bright yellow */
   --card-bg: #ffffff;
   --border-color: #e5e5e5;
   --muted-text: #6b7280;
 }
 
 .dark {
-  --background: #111111; /* Deep charcoal */
-  --foreground: #faf9f6; /* Warm cream */
-  --card-bg: #1a1a1a;
-  --border-color: #333333;
+  --background: #1a1a1a; /* Dark charcoal */
+  --foreground: #fdfbf7; /* Clean off-white */
+  --card-bg: #2d2d2d;
+  --border-color: #404040;
   --muted-text: #a1a1aa;
 }
 
@@ -25,6 +26,7 @@
   --color-brand-green: var(--accent-green);
   --color-brand-green-hover: var(--accent-green-hover);
   --color-brand-orange: var(--secondary-orange);
+  --color-brand-accent: var(--accent-discount);
   --color-card: var(--card-bg);
   --color-border: var(--border-color);
   --color-muted: var(--muted-text);
