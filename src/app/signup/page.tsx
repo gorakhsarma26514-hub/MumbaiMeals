@@ -121,6 +121,25 @@ export default function SignupPage() {
                     className="block w-full appearance-none rounded-xl border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-green sm:text-sm"
                   />
                 </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Business Category (Select multiple if applicable)</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { id: 'c_veg', label: 'Veg Meals' },
+                      { id: 'c_nonveg', label: 'Non-Veg Meals' },
+                      { id: 'c_sweets', label: 'Sweets & Mithai' },
+                      { id: 'c_cakes', label: 'Cakes' },
+                      { id: 'c_bakery', label: 'Bakery' },
+                      { id: 'c_desserts', label: 'Desserts' },
+                      { id: 'c_beverages', label: 'Juices & Beverages' }
+                    ].map(cat => (
+                      <label key={cat.id} className="flex items-center gap-2 p-2 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                        <input type="checkbox" id={cat.id} className="w-4 h-4 text-brand-green focus:ring-brand-green border-gray-300 rounded" />
+                        <span className="text-sm font-medium text-gray-700">{cat.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
               </>
             )}
 

@@ -147,7 +147,7 @@ export default function HomePage() {
                   playsInline 
                   className="object-cover w-full h-full animate-image-drift"
                 >
-                  <source src="/assets/banner-video2.mp4" type="video/mp4" />
+                  <source src="/assets/vdo-banner.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
               </div>

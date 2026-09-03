@@ -21,11 +21,12 @@ export function FilterBar({ options, activeId, onSelect, className }: FilterBarP
         <button
           key={option.id}
           onClick={() => onSelect(option.id)}
+          aria-pressed={activeId === option.id}
           className={cn(
-            "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors shrink-0",
+            "px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors shrink-0 min-h-[40px] flex items-center justify-center",
             activeId === option.id
               ? "bg-foreground text-background"
-              : "bg-background border border-border text-muted hover:bg-muted hover:text-foreground"
+              : "bg-background border border-border text-[#2C2C2A]/70 hover:bg-muted hover:text-foreground"
           )}
         >
           {option.label}

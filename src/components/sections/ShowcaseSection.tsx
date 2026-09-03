@@ -5,7 +5,6 @@ import Image from 'next/image';
 
 const images = [
   { id: 1,  src: '/assets/pizza.jpg',         alt: 'Cheese Pizza' },
-  { id: 2,  src: '/assets/food1.jpg',          alt: 'Gourmet Meal' },
   { id: 3,  src: '/assets/salad.jpg',          alt: 'Fresh Salad' },
   { id: 4,  src: '/assets/chicken.jpg',        alt: 'Spicy Chicken' },
   { id: 5,  src: '/assets/roll.jpg',           alt: 'Kathi Roll' },
